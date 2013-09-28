@@ -41,18 +41,20 @@ public class FaceBookServiceImpl implements UserService {
 	
 	public FaceBook htmlparser(String html){
 		Document doc = Jsoup.parse(html);		
-		//System.out.println(html);
 		Elements the_elements = doc.getElementsByClass("pls");
 		Element first_result = the_elements.first();
-		FaceBook user = new FaceBook("not found");
+		FaceBook user = new FaceBook("no FaceBook account found");
 		
 		if (first_result != null){
-			/*
-			first_result.text().split();
-			user.setName();
+			String[] tokens = first_result.text().split("[ ]+");
+			
+			if(tokens.length > 1) 
+				user.setName(tokens[0] + " " + tokens[1]);
+			
+			String about = "";
+			for(int i = 2; i < tokens.length; i++)
+				about += tokens[i] + " ";
 			user.setAbout(about);
-			System.out.println(first_result.text());
-			*/
 		}
 		
 		return user;

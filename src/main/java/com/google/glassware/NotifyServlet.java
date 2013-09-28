@@ -27,6 +27,11 @@ import com.google.api.services.mirror.model.TimelineItem;
 import com.google.api.services.mirror.model.UserAction;
 import com.google.common.collect.Lists;
 
+import glasswaredata.FaceBook;
+import glasswaredata.LinkedIn;
+import glasswareserviceimpl.FaceBookServiceImpl;
+import glasswareserviceimpl.LinkedInServiceImpl;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,6 +52,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class NotifyServlet extends HttpServlet {
   private static final Logger LOG = Logger.getLogger(NotifyServlet.class.getSimpleName());
+  private static final FaceBookServiceImpl faceBookService = new FaceBookServiceImpl();
+  private static final LinkedInServiceImpl linkedInService = new LinkedInServiceImpl();
 
   private static final String[] CAT_UTTERANCES = {
       "<em class='green'>Purr...</em>",
@@ -148,6 +155,15 @@ public class NotifyServlet extends HttpServlet {
 
         timelineItem.setText(null);
         //MAKE CARDS HERE FROM noteText
+        
+        //FACEBOOK
+        FaceBook fbuser = (FaceBook) faceBookService.getInfo(noteText);
+        //fbuser is now filled with correct stuff
+        
+        //LINKEDIN
+        LinkedIn liuser = (LinkedIn) linkedInService.getInfo(noteText);
+        //liuser now filled with correct stuff
+        
         timelineItem.setHtml(makeHtmlForCard("<p class='text-auto-size'>"
             + "Looking up <em class='red'>" + noteText + "</em> in LinkedIn, FB, and Twitter! " + "</p>"));
         timelineItem.setMenuItems(Lists.newArrayList(

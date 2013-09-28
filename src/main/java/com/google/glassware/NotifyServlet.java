@@ -132,7 +132,7 @@ public class NotifyServlet extends HttpServlet {
 
         // Create a new item with just the values that we want to patch.
         TimelineItem itemPatch = new TimelineItem();
-        itemPatch.setText("Java Quick Start got your photo! " + caption);
+        itemPatch.setText("GlassFriends got your photo! " + caption);
 
         // Patch the item. Notice that since we retrieved the entire item above
         // in order to access the caption, we could have just changed the text
@@ -145,13 +145,14 @@ public class NotifyServlet extends HttpServlet {
         // Grab the spoken text from the timeline card and update the card with
         // an HTML response (deleting the text as well).
         String noteText = timelineItem.getText();
-        String utterance = CAT_UTTERANCES[new Random().nextInt(CAT_UTTERANCES.length)];
 
         timelineItem.setText(null);
+        //MAKE CARDS HERE FROM noteText
         timelineItem.setHtml(makeHtmlForCard("<p class='text-auto-size'>"
-            + "Oh, did you say " + noteText + "? " + utterance + "</p>"));
+            + "Looking up <em class='red'>" + noteText + "</em> in LinkedIn, FB, and Twitter! " + "</p>"));
         timelineItem.setMenuItems(Lists.newArrayList(
             new MenuItem().setAction("DELETE")));
+        timelineItem.setBundleId("12345-"+noteText);
 
         mirrorClient.timeline().update(timelineItem.getId(), timelineItem).execute();
       } else {
@@ -162,13 +163,13 @@ public class NotifyServlet extends HttpServlet {
 
   /**
    * Wraps some HTML content in article/section tags and adds a footer
-   * identifying the card as originating from the Java Quick Start.
+   * identifying the card as originating from the GlassFriends.
    *
    * @param content the HTML content to wrap
    * @return the wrapped HTML content
    */
   private static String makeHtmlForCard(String content) {
     return "<article class='auto-paginate'>" + content
-        + "<footer><p>Java Quick Start</p></footer></article>";
+        + "<footer><p>GlassFriends</p></footer></article>";
   }
 }

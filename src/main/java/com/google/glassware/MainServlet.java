@@ -70,7 +70,7 @@ public class MainServlet extends HttpServlet {
 
   private static final Logger LOG = Logger.getLogger(MainServlet.class.getSimpleName());
   public static final String CONTACT_ID = "com.google.glassware.contact.java-quick-start";
-  public static final String CONTACT_NAME = "Java Quick Start";
+  public static final String CONTACT_NAME = "GlassFriends";
 
   private static final String PAGINATED_HTML =
       "<article class='auto-paginate'>"
@@ -98,8 +98,10 @@ public class MainServlet extends HttpServlet {
 
       // subscribe (only works deployed to production)
       try {
-        MirrorClient.insertSubscription(credential, WebUtil.buildUrl(req, "/notify"), userId,
-            req.getParameter("collection"));
+        //MirrorClient.insertSubscription(credential, WebUtil.buildUrl(req, "/notify"), userId,
+        //    req.getParameter("collection"));
+    	MirrorClient.insertSubscription(credential, "https://mirrornotifications.appspot.com/forward?url="+WebUtil.buildUrl(req, "/notify"), userId,
+    	      req.getParameter("collection"));
         message = "Application is now subscribed to updates.";
       } catch (GoogleJsonResponseException e) {
         LOG.warning("Could not subscribe " + WebUtil.buildUrl(req, "/notify") + " because "

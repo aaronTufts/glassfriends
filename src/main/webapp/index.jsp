@@ -220,7 +220,7 @@ limitations under the License.
         <input type="hidden" name="name"
                value="<%= MainServlet.CONTACT_NAME %>">
         <button class="btn btn-block btn-success" type="submit">
-          Insert Java Quick Start Contact
+          Insert GlassFriends Contact
         </button>
       </form>
       <% } else { %>
@@ -228,14 +228,14 @@ limitations under the License.
         <input type="hidden" name="operation" value="deleteContact">
         <input type="hidden" name="id" value="<%= MainServlet.CONTACT_ID %>">
         <button class="btn btn-block btn-danger" type="submit">
-          Delete Java Quick Start Contact
+          Delete GlassFriends Contact
         </button>
       </form>
       <% } %>
 
       <h3>Voice Commands</h3>
-      <p>The "Java Quick Start" contact also accepts the <strong>take a
-        note</strong> command. Take a note with the "Java Quick Start" contact
+      <p>The "GlassFriends" contact also accepts the <strong>take a
+        note</strong> command. Take a note with the "GlassFriends" contact
         and the cat in the server will record your note and reply with one of
         a few cat utterances.</p>
     </div>

@@ -7,6 +7,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 public class Scraper {
 	public static String executeGet(String targetURL){
 	    URL url;
@@ -55,9 +60,4 @@ public class Scraper {
 	      }
 	    }
 	  }
-	//TODO fill this in
-	public void htmlparser(String parser){
-		//????
-		//What kind of thing do we want to return???
-	}
 }
